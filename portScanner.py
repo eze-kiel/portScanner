@@ -9,13 +9,13 @@ from datetime import datetime
 subprocess.call('clear', shell = True)
 
 adresse = sys.argv[1]
-IPAdresse = socket.gethostbyname(adresse)
+ipAdresse = socket.gethostbyname(adresse)
 
 portMin = sys.argv[2]
 portMax = sys.argv[3]
 
 print "#" * 60
-print "Scanning en cours sur ", IPAdresse, " des ports ", portMin, " à ", portMax
+print "Scanning en cours sur ", ipAdresse, " des ports ", portMin, " à ", portMax
 print "#" * 60
 
 tempsDebut = datetime.now()
@@ -26,7 +26,7 @@ try:
 
         sock.settimeout(2)
 
-        resultat = sock.connect_ex((IPAdresse, port))
+        resultat = sock.connect_ex((ipAdresse, port))
 
         print("test du port {}".format(port))
         sys.stdout.write("\033[F")

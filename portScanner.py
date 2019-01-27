@@ -8,11 +8,11 @@ from datetime import datetime
 
 subprocess.call('clear', shell = True)
 
-adresse = raw_input("Entre un adresse IP: ")
+adresse = sys.argv[1]
 IPAdresse = socket.gethostbyname(adresse)
 
-portMin = raw_input("Entre le port minimum à scanner: ")
-portMax = raw_input("Entre le port maximum à scanner: ")
+portMin = sys.argv[2]
+portMax = sys.argv[3]
 
 print "#" * 60
 print "Scanning en cours sur ", IPAdresse, " des ports ", portMin, " à ", portMax
@@ -23,13 +23,16 @@ tempsDebut = datetime.now()
 try:
     for port in range(int(portMin), int(portMax) + 1):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        sock.settimeout(2)
+
         resultat = sock.connect_ex((IPAdresse, port))
 
         print("test du port {}".format(port))
         sys.stdout.write("\033[F")
 
         if resultat == 0:
-            print ("port {}   ouvert".format(port))
+            print ("port {}   ouvert -> {}".format(port, socket.getservbyport(port)))
 
         sock.close()
 

@@ -7,4 +7,4 @@ https://www.pythonforbeginners.com/code-snippets-source-code/port-scanner-in-pyt
 To execute the script, write : 
 
 
-python portScanner.py IP PORTMIN PORTMAX
+```python portScanner.py IP PORTMIN PORTMAX```
